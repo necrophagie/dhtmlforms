@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>DHTML Задание</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+        input[type="text"] {
+            margin: 5px;
+        }
+        input[type="checkbox"] {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Задание 4: Связка чекбоксов и полей</h3>
+    <label>
+        <input type="checkbox" data-target="field1"> Показать поле 1
+    </label>
+    <input type="text" id="field1" style="display:none;" placeholder="Поле 1">
+
+    <label>
+        <input type="checkbox" data-target="field2"> Показать поле 2
+    </label>
+    <input type="text" id="field2" style="display:none;" placeholder="Поле 2">
+
+    <label>
+        <input type="checkbox" checked data-target="field3"> Показать поле 3
+    </label>
+    <input type="text" id="field3" placeholder="Поле 3">
+</div>
+
+<div class="container">
+    <h3>Задание 1: Подтверждение</h3>
+    <button id="confirmBtn">нажми для подтверждения</button><br><br>
+    <input type="text" id="messageField" placeholder="сообщение появится здесь">
+    <label>
+        <input type="checkbox" id="confirmCheckbox"> подтверждение
+    </label>
+</div>
+
+<div class="container">
+    <h3>Задание 2: Блокировка поля</h3>
+    <button id="lockBtn">Заблокировать поле</button>
+    <button id="unlockBtn">Разблокировать поле</button><br><br>
+    <input type="text" id="toggleField" value="текст для блокировки">
+</div>
+
+<div class="container">
+    <h3>Задание 3: Фокус при наведении</h3>
+    <input type="text" id="input1" placeholder="наведи сюда">
+    <input type="text" id="input2" placeholder="или сюда">
+    <input type="text" id="input4" placeholder="еще одно поле">
+</div>
+
+<script>
+    // Задание 1
+    document.getElementById('confirmBtn').addEventListener('click', function() {
+        if (confirm('Вы уверены?')) {
+            document.getElementById('messageField').value = 'Действие подтверждено!';
+            document.getElementById('confirmCheckbox').checked = true;
+        } else {
+            document.querySelector('form') && document.querySelector('form').reset();
+        }
+    });
+
+    // Задание 2
+    document.getElementById('lockBtn').addEventListener('click', () => {
+        document.getElementById('toggleField').disabled = true;
+    });
+    document.getElementById('unlockBtn').addEventListener('click', () => {
+        document.getElementById('toggleField').disabled = false;
+    });
+
+    // Задание 3
+    document.querySelectorAll('input[type="text"][id]').forEach(input => {
+        input.addEventListener('mouseenter', function() {
+            this.focus();
+            this.value = this.id;
+        });
+        input.addEventListener('mouseleave', function() {
+            if (this.id !== 'messageField' && this.id !== 'toggleField') {
+                this.value = '';
+            }
+        });
+    });
+
+    // Задание 4
+    document.querySelectorAll('input[type="checkbox"][data-target]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const targetId = this.dataset.target;
+            const targetField = document.getElementById(targetId);
+            if (this.checked) {
+                targetField.style.display = 'inline';
+            } else {
+                targetField.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
