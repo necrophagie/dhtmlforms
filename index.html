@@ -40,6 +40,24 @@
     <input type="text" id="input4" placeholder="еще одно поле">
 </div>
 
+<div class="container">
+    <h3>Задание 4: Показ/скрытие полей по чекбоксу</h3>
+    <label>
+        <input type="checkbox" data-target="field1">
+        <input type="text" id="field1" placeholder="Поле 1" style="display: none; margin-left: 10px;">
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-target="field2">
+        <input type="text" id="field2" placeholder="Поле 2" style="display: none; margin-left: 10px;">
+    </label><br><br>
+
+    <label>
+        <input type="checkbox" data-target="field3">
+        <input type="text" id="field3" placeholder="Поле 3" style="display: none; margin-left: 10px;">
+    </label>
+</div>
+    
 <script>
     // Задание 1
     document.getElementById('confirmBtn').addEventListener('click', function() {
